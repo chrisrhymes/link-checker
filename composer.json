@@ -3,6 +3,11 @@
   "description": "A laravel package to check for broken links in database content",
   "type": "library",
   "license": "MIT",
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
   "autoload": {
     "psr-4": {
       "ChrisRhymes\\LinkChecker\\": "src/"
