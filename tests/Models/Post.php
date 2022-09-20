@@ -13,7 +13,7 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'content,'
+        'content,',
     ];
 
     protected static function newFactory()

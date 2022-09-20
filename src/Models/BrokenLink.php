@@ -13,6 +13,7 @@ class BrokenLink extends Model
         'linkable_id',
         'linkable_type',
         'broken_link',
+        'exception_message',
     ];
 
     public function linkable()

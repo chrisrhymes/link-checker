@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('linkable_id');
             $table->string('linkable_type');
             $table->string('broken_link');
+            $table->string('exception_message')->nullable();
             $table->timestamps();
         });
     }
