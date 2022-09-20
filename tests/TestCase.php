@@ -18,8 +18,8 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->withFactories(__DIR__.'/database/Factories');
+        $this->loadMigrationsFrom(__DIR__ . '/Database/migrations');
+        $this->withFactories(__DIR__.'/Database/Factories');
     }
 
     protected function getEnvironmentSetUp($app)
