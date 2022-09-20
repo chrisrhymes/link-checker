@@ -54,6 +54,5 @@ class CheckLinkFailed implements ShouldQueue
                     'exception_message' => $e->getMessage(),
                 ]);
         }
-        
     }
 }

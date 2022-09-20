@@ -17,6 +17,5 @@ class ServiceProvider extends SupportServiceProvider
 
     public function register()
     {
-
     }
 }

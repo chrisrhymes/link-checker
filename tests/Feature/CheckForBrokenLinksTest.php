@@ -1,7 +1,7 @@
 <?php
 
-use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
 use ChrisRhymes\LinkChecker\Facades\LinkChecker;
+use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
 use ChrisRhymes\LinkChecker\Test\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -50,7 +50,7 @@ it('reports the exception message', function () {
             'content' => '
                 <a href="https://this-is-exception.com">Broken link causes exception</a>',
         ]);
-    
+
     CheckModelForBrokenLinks::dispatch($post, ['content']);
 
     $this->assertDatabaseHas('broken_links', [

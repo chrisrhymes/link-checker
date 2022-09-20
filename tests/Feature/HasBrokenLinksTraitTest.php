@@ -1,9 +1,7 @@
 <?php
 
-use ChrisRhymes\LinkChecker\Models\BrokenLink;
 use ChrisRhymes\LinkChecker\Test\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 
 uses(RefreshDatabase::class);
 
