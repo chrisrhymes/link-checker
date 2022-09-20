@@ -2,6 +2,7 @@
 
 namespace ChrisRhymes\LinkChecker\Jobs;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Model;
@@ -36,11 +37,23 @@ class CheckLinkFailed implements ShouldQueue
      */
     public function handle()
     {
-        if (Http::get($this->link)->failed()) {
+        try {
+            $failed = Http::timeout(config('link-checker.timeout', 10))
+                ->get($this->link)->failed();
+
+            if ($failed) {
+                $this->model->brokenLinks()
+                    ->create([
+                        'broken_link' => $this->link,
+                    ]);
+            }
+        } catch (Exception $e) {
             $this->model->brokenLinks()
                 ->create([
                     'broken_link' => $this->link,
+                    'exception_message' => $e->getMessage(),
                 ]);
         }
+        
     }
 }

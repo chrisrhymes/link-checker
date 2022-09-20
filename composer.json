@@ -39,7 +39,7 @@
         "ChrisRhymes\\LinkChecker\\ServiceProvider"
       ],
       "aliases": {
-        "Debugbar": "ChrisRhymes\\LinkChecker\\Facade"
+        "LinkChecker": "ChrisRhymes\\LinkChecker\\Facades\\LinkChecker"
       }
     }
   }
