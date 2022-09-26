@@ -2,6 +2,7 @@
 
 namespace ChrisRhymes\LinkChecker\Jobs;
 
+use ChrisRhymes\LinkChecker\Objects\Link;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,7 +17,7 @@ class CheckLinkFailed implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public string $link;
+    public Link $link;
 
     private Model $model;
 
@@ -32,7 +33,7 @@ class CheckLinkFailed implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Model $model, string $link)
+    public function __construct(Model $model, Link $link)
     {
         $this->link = $link;
         $this->model = $model;
@@ -66,10 +67,11 @@ class CheckLinkFailed implements ShouldQueue
     public function handle()
     {
         // Prevent unnecessary request for empty links
-        if (empty($this->link)) {
+        if (empty($this->link->url)) {
             $this->model->brokenLinks()
                 ->create([
-                    'broken_link' => $this->link,
+                    'broken_link' => $this->link->url,
+                    'link_text' => $this->link->text,
                     'exception_message' => 'Empty link',
                 ]);
 
@@ -78,18 +80,20 @@ class CheckLinkFailed implements ShouldQueue
 
         try {
             $failed = Http::timeout(config('link-checker.timeout', 10))
-                ->get($this->link)->failed();
+                ->get($this->link->url)->failed();
 
             if ($failed) {
                 $this->model->brokenLinks()
                     ->create([
-                        'broken_link' => $this->link,
+                        'broken_link' => $this->link->url,
+                        'link_text' => $this->link->text,
                     ]);
             }
         } catch (Exception $e) {
             $this->model->brokenLinks()
                 ->create([
-                    'broken_link' => $this->link,
+                    'broken_link' => $this->link->url,
+                    'link_text' => $this->link->text,
                     'exception_message' => $e->getMessage(),
                 ]);
         }
