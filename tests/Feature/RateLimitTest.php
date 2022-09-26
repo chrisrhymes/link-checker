@@ -28,7 +28,7 @@ it('triggers the rate limit and only finds one broken link', function () {
         ]);
 
     CheckModelForBrokenLinks::dispatch($post, ['content']);
-    
+
     expect(BrokenLink::get())
         ->toHaveCount(1)
         ->first()->broken_link->toBe('https://this-is-broken.com/test1');

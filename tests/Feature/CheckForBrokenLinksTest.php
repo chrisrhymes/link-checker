@@ -75,9 +75,9 @@ it('handles empty links and prevents unnecessary requests', function () {
         ->create([
             'content' => '<a href="">Empty link</a><a href="">Empty link</a>',
         ]);
-    
+
     CheckModelForBrokenLinks::dispatch($post, ['content']);
-    
+
     Http::assertNothingSent();
 
     expect(BrokenLink::get())
