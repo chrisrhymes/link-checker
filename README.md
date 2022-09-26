@@ -2,6 +2,13 @@
 
 A package that will check for broken links in the HTML of a specified model's fields.
 
+## Contents
+
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Rate Limiting](#rate-limiting)
+- [Tests](#tests)
+
 ## Getting Started
 
 ```bash
@@ -32,9 +39,11 @@ class Post extends Model
 }
 ```
 
-## Publish the config (optional)
+### Publish the config (optional)
 
-By default, the timeout for link checks is set to 10 seconds. If you wish to change this then publish the configuration file and update the values.
+By default, the timeout for link checks is set to 10 seconds. There are also settings for the rate limiting.
+
+If you wish to change this then publish the configuration file and update the values.
 
 ```bash
 php artisan vendor:publish --provider="ChrisRhymes\LinkChecker\ServiceProvider"
@@ -79,6 +88,14 @@ $post->brokenLinks; // A collection of broken links for the model
 $post->brokenLinks[0]->broken_link; // The link that is broken
 $post->brokenLinks[0]->exception_message; // The optional exception message
 ```
+
+## Rate Limiting
+
+In order to reduce the amount of requests sent to a domain at a time, this package has rate limiting enabled.
+
+The configuration file allows you to set the `rate_limit` to set how many requests can be sent to a single domain within a minute. The default is set to 5, so adjust as required for your circumstances.
+
+The configuration file also allows you to set the `retry_until` so the job will be retried until the time limit (in munites) is reached.
 
 ## Tests
 

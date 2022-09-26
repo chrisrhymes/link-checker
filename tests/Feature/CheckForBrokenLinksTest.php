@@ -2,6 +2,7 @@
 
 use ChrisRhymes\LinkChecker\Facades\LinkChecker;
 use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
+use ChrisRhymes\LinkChecker\Models\BrokenLink;
 use ChrisRhymes\LinkChecker\Test\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -67,4 +68,19 @@ it('uses the facade to check for broken links', function () {
     LinkChecker::checkForBrokenLinks($this->post, ['content']);
 
     Queue::assertPushed(CheckModelForBrokenLinks::class);
+});
+
+it('handles empty links and prevents unnecessary requests', function () {
+    $post = Post::factory()
+        ->create([
+            'content' => '<a href="">Empty link</a><a href="">Empty link</a>',
+        ]);
+    
+    CheckModelForBrokenLinks::dispatch($post, ['content']);
+    
+    Http::assertNothingSent();
+
+    expect(BrokenLink::get())
+        ->toHaveCount(2)
+        ->first()->exception_message->toBe('Empty link');
 });
