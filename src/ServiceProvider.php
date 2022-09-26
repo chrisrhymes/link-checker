@@ -20,7 +20,7 @@ class ServiceProvider extends SupportServiceProvider
 
         RateLimiter::for('link-checker', function ($job) {
             return Limit::perMinute(config('link-checker.rate_limit', 5))
-                ->by(parse_url($job->link, PHP_URL_HOST));
+                ->by(parse_url($job->link->url, PHP_URL_HOST));
         });
     }
 

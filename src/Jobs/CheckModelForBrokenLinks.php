@@ -2,6 +2,7 @@
 
 namespace ChrisRhymes\LinkChecker\Jobs;
 
+use ChrisRhymes\LinkChecker\Objects\Link;
 use DOMDocument;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -53,7 +54,11 @@ class CheckModelForBrokenLinks implements ShouldQueue
                     $anchorTags = $doc->getElementsByTagName('a');
 
                     foreach ($anchorTags as $anchorTag) {
-                        $this->links[] = $anchorTag->getAttribute('href');
+                        $link = new Link;
+                        $link->url = $anchorTag->getAttribute('href');
+                        $link->text = $anchorTag->nodeValue;
+
+                        $this->links[] = $link;
                     }
                 } catch (Exception $e) {
                     $className = get_class($this->model);

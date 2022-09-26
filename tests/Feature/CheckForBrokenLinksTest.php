@@ -32,12 +32,14 @@ it('finds the broken link and reports it', function () {
         'linkable_id' => $this->post->id,
         'linkable_type' => 'ChrisRhymes\LinkChecker\Test\Models\Post',
         'broken_link' => 'https://this-is-broken.com',
+        'link_text' => 'Broken link',
     ]);
 
     $this->assertDatabaseMissing('broken_links', [
         'linkable_id' => $this->post->id,
         'linkable_type' => 'ChrisRhymes\LinkChecker\Test\Models\Post',
         'broken_link' => 'https://www.this-is-working.co.uk',
+        'link_text' => 'Working link',
     ]);
 
     expect($this->post->fresh()->brokenLinks)->toHaveCount(1);
@@ -58,6 +60,7 @@ it('reports the exception message', function () {
         'linkable_id' => $post->id,
         'linkable_type' => 'ChrisRhymes\LinkChecker\Test\Models\Post',
         'broken_link' => 'https://this-is-exception.com',
+        'link_text' => 'Broken link causes exception',
         'exception_message' => 'Attempted request to [https://this-is-exception.com] without a matching fake.',
     ]);
 });
@@ -73,7 +76,7 @@ it('uses the facade to check for broken links', function () {
 it('handles empty links and prevents unnecessary requests', function () {
     $post = Post::factory()
         ->create([
-            'content' => '<a href="">Empty link</a><a href="">Empty link</a>',
+            'content' => '<a href=""></a><a href=""></a>',
         ]);
 
     CheckModelForBrokenLinks::dispatch($post, ['content']);
@@ -81,6 +84,10 @@ it('handles empty links and prevents unnecessary requests', function () {
     Http::assertNothingSent();
 
     expect(BrokenLink::get())
-        ->toHaveCount(2)
-        ->first()->exception_message->toBe('Empty link');
+        ->toHaveCount(2);
+
+    expect(BrokenLink::first())
+        ->exception_message->toBe('Empty link')
+        ->broken_link->toBe('')
+        ->link_text->toBe('');
 });

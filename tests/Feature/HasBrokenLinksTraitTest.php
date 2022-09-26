@@ -18,6 +18,7 @@ it('has brokenLinks relationship', function () {
 
     $this->post->brokenLinks()->create([
         'broken_link' => 'https://a-broken-link',
+        'link_text' => 'broken link text',
         'exception_message' => 'An exception message',
     ]);
 
@@ -25,5 +26,6 @@ it('has brokenLinks relationship', function () {
 
     expect($this->post->fresh()->brokenLinks[0])
         ->broken_link->toBe('https://a-broken-link')
+        ->link_text->toBe('broken link text')
         ->exception_message->toBe('An exception message');
 });
