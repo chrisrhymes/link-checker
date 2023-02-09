@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * ChrisRhymes\LinkChecker\Models\BrokenLink
- * 
+ *
  * @property int $id
  * @property int $linkable_id
  * @property string $linkable_type
