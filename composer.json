@@ -22,6 +22,7 @@
     "guzzlehttp/guzzle": "^7.2"
   },
   "require-dev": {
+    "doctrine/dbal": "^3.6",
     "orchestra/testbench": "^7.7",
     "pestphp/pest": "^1.22",
     "pestphp/pest-plugin-laravel": "^1.2",
