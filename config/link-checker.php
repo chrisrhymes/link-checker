@@ -19,4 +19,9 @@ return [
      * Retry the CheckLinkFailed job until a specified time (in minutes)
      */
     'retry_until' => 10,
+
+    /**
+     * Describes the SSL certificate verification behavior of a request
+     */
+    'verify' => true,
 ];
