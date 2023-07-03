@@ -22,7 +22,7 @@ it('sets verify ssl to false', function () {
     $post = Post::factory()
         ->create([
             'content' => '
-                <a href="https://this-is-broken.com/test1">Broken link</a>'
+                <a href="https://this-is-broken.com/test1">Broken link</a>',
         ]);
 
     CheckModelForBrokenLinks::dispatch($post, ['content']);
