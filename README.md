@@ -2,6 +2,9 @@
 
 A package that will check for broken links in the HTML of a specified model's fields.
 
+![Downloads](https://img.shields.io/packagist/dt/chrisrhymes/link-checker.svg)
+![Downloads](https://img.shields.io/github/stars/chrisrhymes/link-checker.svg)
+
 ## Contents
 
 - [Getting Started](#getting-started)
