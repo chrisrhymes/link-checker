@@ -7,6 +7,7 @@ A package that will check for broken links in the HTML of a specified model's fi
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Rate Limiting](#rate-limiting)
+- [Verify SSL](#verify-ssl)
 - [Tests](#tests)
 
 ## Getting Started
@@ -96,6 +97,12 @@ In order to reduce the amount of requests sent to a domain at a time, this packa
 The configuration file allows you to set the `rate_limit` to set how many requests can be sent to a single domain within a minute. The default is set to 5, so adjust as required for your circumstances.
 
 The configuration file also allows you to set the `retry_until` so the job will be retried until the time limit (in munites) is reached.
+
+## Verify SSL
+
+To disable verifying the SSL certificate of the link you are checking, [publish the package configuration](#publish-the-config-optional) and then set `'verify' => false,`.
+
+This uses the HTTP client withOptions() to set the [verify request option in Guzzle](https://docs.guzzlephp.org/en/stable/request-options.html#verify).
 
 ## Tests
 
