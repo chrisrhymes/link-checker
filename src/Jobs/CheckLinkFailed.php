@@ -12,6 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\RateLimited;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class CheckLinkFailed implements ShouldQueue
 {
@@ -75,6 +76,11 @@ class CheckLinkFailed implements ShouldQueue
                     'exception_message' => 'Empty link',
                 ]);
 
+            return;
+        }
+
+        // Prevent checking mailto and tel links
+        if (Str::startsWith($this->link->url, ['mailto', 'tel'])) {
             return;
         }
 
