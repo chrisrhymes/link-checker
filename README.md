@@ -72,6 +72,8 @@ LinkChecker::checkForBrokenLinks($post, ['content']);
 
 This will queue a job to get the links from the model, which will then queue a job to check each link it finds.
 
+The job will record an entry in the database for broken links with an empty url, but will skip testing mailto or tel links.
+
 You will then need to run the queue to run the checks.
 
 ```bash
