@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Http;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    Http::fake([
-        'https://this-is-broken.com' => Http::response(null, 404),
-    ]);
+    Http::fake();
 
     $this->post = Post::factory()
         ->create([
