@@ -33,6 +33,7 @@ it('finds the broken link and reports it', function () {
         'linkable_type' => 'ChrisRhymes\LinkChecker\Test\Models\Post',
         'broken_link' => 'https://this-is-broken.com',
         'link_text' => 'Broken link',
+        'exception_message' => '404 Status Code',
     ]);
 
     $this->assertDatabaseMissing('broken_links', [

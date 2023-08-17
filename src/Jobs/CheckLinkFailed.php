@@ -85,17 +85,27 @@ class CheckLinkFailed implements ShouldQueue
         }
 
         try {
-            $failed = Http::withOptions([
+            $response = Http::withOptions([
                 'verify' => config('link-checker.verify', true),
             ])
                 ->timeout(config('link-checker.timeout', 10))
-                ->get($this->link->url)->failed();
+                ->get($this->link->url);
 
-            if ($failed) {
+            if ($response->redirect()) {
                 $this->model->brokenLinks()
                     ->create([
                         'broken_link' => $this->link->url,
                         'link_text' => $this->link->text,
+                        'exception_message' => "{$response->status()} Redirect",
+                    ]);
+            }
+
+            if ($response->failed()) {
+                $this->model->brokenLinks()
+                    ->create([
+                        'broken_link' => $this->link->url,
+                        'link_text' => $this->link->text,
+                        'exception_message' => "{$response->status()} Status Code",
                     ]);
             }
         } catch (Exception $e) {
