@@ -85,9 +85,10 @@ class CheckLinkFailed implements ShouldQueue
         }
 
         try {
-            $response = Http::withOptions([
-                'verify' => config('link-checker.verify', true),
-            ])
+            $response = Http::withUserAgent(config('link-checker.user_agent', 'link-checker'))
+                ->withOptions([
+                    'verify' => config('link-checker.verify', true),
+                ])
                 ->timeout(config('link-checker.timeout', 10))
                 ->get($this->link->url);
 
