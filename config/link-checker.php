@@ -21,6 +21,11 @@ return [
     'retry_until' => 10,
 
     /**
+     * Set a custom user agent
+     */
+    'user_agent' => 'link-checker',
+
+    /**
      * Describes the SSL certificate verification behavior of a request
      */
     'verify' => true,

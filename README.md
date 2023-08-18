@@ -10,6 +10,7 @@ A package that will check for broken links in the HTML of a specified model's fi
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Rate Limiting](#rate-limiting)
+- [User Agent](#user-agent)
 - [Verify SSL](#verify-ssl)
 - [Tests](#tests)
 
@@ -102,6 +103,12 @@ In order to reduce the amount of requests sent to a domain at a time, this packa
 The configuration file allows you to set the `rate_limit` to set how many requests can be sent to a single domain within a minute. The default is set to 5, so adjust as required for your circumstances.
 
 The configuration file also allows you to set the `retry_until` so the job will be retried until the time limit (in munites) is reached.
+
+## User Agent
+
+To set a custom user agent for requests sent by the link checker, set the `user_agent` in the configuration file. For example `'user_agent' => 'my-user-agent',`
+
+The default value is `link-checker`.
 
 ## Verify SSL
 
