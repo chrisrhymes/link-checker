@@ -1,6 +1,6 @@
 # Link Checker for Laravel
 
-A package that will check for broken links in the HTML of a specified model's fields.
+A package that will check for broken links in the specified model's fields. It will check both URL fields and fields containing HTML.
 
 ![Downloads](https://img.shields.io/packagist/dt/chrisrhymes/link-checker.svg)
 ![Downloads](https://img.shields.io/github/stars/chrisrhymes/link-checker.svg)
@@ -56,7 +56,7 @@ php artisan vendor:publish --provider="ChrisRhymes\LinkChecker\ServiceProvider"
 
 ## Usage
 
-Then you can check if the model has broken links in the html in a specific field.
+Then you can check if the model has broken links in the specified field(s).
 
 ```php
 use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
@@ -65,10 +65,10 @@ use ChrisRhymes\LinkChecker\Facades\LinkChecker;
 $post = Post::first();
 
 // Dispatch the job directly
-CheckModelForBrokenLinks::dispatch($post, ['content']);
+CheckModelForBrokenLinks::dispatch($post, ['content', 'url']);
 
 // Or using the facade
-LinkChecker::checkForBrokenLinks($post, ['content']);
+LinkChecker::checkForBrokenLinks($post, ['content', 'url']);
 ```
 
 This will queue a job to get the links from the model, which will then queue a job to check each link it finds.

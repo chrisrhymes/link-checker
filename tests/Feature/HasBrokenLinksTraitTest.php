@@ -1,9 +1,6 @@
 <?php
 
 use ChrisRhymes\LinkChecker\Test\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
 
 beforeEach(function () {
     $this->post = Post::factory()

@@ -12,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class CheckModelForBrokenLinks implements ShouldQueue
 {
@@ -48,6 +49,16 @@ class CheckModelForBrokenLinks implements ShouldQueue
             })
             ->filter()
             ->each(function ($field) {
+                if (Str::isUrl($field)) {
+                    $link = new Link;
+                    $link->url = $field;
+                    $link->text = $field;
+
+                    $this->links[] = $link;
+
+                    return;
+                }
+
                 try {
                     $doc = new DOMDocument();
                     $doc->loadHTML($field);
