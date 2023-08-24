@@ -4,11 +4,8 @@ use ChrisRhymes\LinkChecker\Facades\LinkChecker;
 use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
 use ChrisRhymes\LinkChecker\Models\BrokenLink;
 use ChrisRhymes\LinkChecker\Test\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
-
-uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Http::fake([

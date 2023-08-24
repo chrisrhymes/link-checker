@@ -11,7 +11,10 @@
 |
 */
 
-uses(ChrisRhymes\LinkChecker\Test\TestCase::class)->in('Feature');
+uses(
+    ChrisRhymes\LinkChecker\Test\TestCase::class,
+    Illuminate\Foundation\Testing\RefreshDatabase::class
+)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

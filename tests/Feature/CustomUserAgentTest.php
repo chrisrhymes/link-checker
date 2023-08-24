@@ -2,12 +2,9 @@
 
 use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
 use ChrisRhymes\LinkChecker\Test\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
-
-uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Http::fake();
