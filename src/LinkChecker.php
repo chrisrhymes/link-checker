@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class LinkChecker
 {
-    public function checkForBrokenLinks(Model $model, array $fields)
+    public function checkForBrokenLinks(Model $model, array $fields, ?string $base = null)
     {
-        CheckModelForBrokenLinks::dispatch($model, $fields);
+        CheckModelForBrokenLinks::dispatch($model, $fields, $base);
     }
 }

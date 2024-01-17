@@ -24,15 +24,18 @@ class CheckModelForBrokenLinks implements ShouldQueue
 
     private array $links = [];
 
+    private ?string $base = null;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Model $model, array $fields)
+    public function __construct(Model $model, array $fields, ?string $base = null)
     {
         $this->model = $model;
         $this->fields = $fields;
+        $this->base = $base;
     }
 
     /**
@@ -65,8 +68,12 @@ class CheckModelForBrokenLinks implements ShouldQueue
                     $anchorTags = $doc->getElementsByTagName('a');
 
                     foreach ($anchorTags as $anchorTag) {
+                        $href = $anchorTag->getAttribute('href');
+
                         $link = new Link;
-                        $link->url = $anchorTag->getAttribute('href');
+                        $link->url = Str::startsWith($href, '/') && $this->base
+                            ? $this->base.$href
+                            : $href;
                         $link->text = $anchorTag->nodeValue;
 
                         $this->links[] = $link;
