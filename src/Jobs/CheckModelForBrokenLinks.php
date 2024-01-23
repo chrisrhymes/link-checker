@@ -70,6 +70,10 @@ class CheckModelForBrokenLinks implements ShouldQueue
                     foreach ($anchorTags as $anchorTag) {
                         $href = $anchorTag->getAttribute('href');
 
+                        if (Str::startsWith($href, ['mailto', 'tel'])) {
+                            continue;
+                        }
+
                         $link = new Link;
                         $link->url = ! Str::startsWith($href, ['http://', 'https://']) && $this->base
                             ? $this->base.$href
