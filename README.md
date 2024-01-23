@@ -99,7 +99,9 @@ $post->brokenLinks[0]->exception_message; // The optional exception message
 
 ### Relative links
 
-If you have relative links within a html field in your model (that begin with '/', rather than absolute urls beginning with 'http'), then you can pass a 3rd parameter as the base. The CheckModelForBrokenLinks job will prepend the base to the relative url before it is checked.
+If you have relative links within a html field in your model (that don't begin with 'http'), then you can pass a 3rd parameter as the base. The CheckModelForBrokenLinks job will prepend the base to the relative url before it is checked.
+
+If your relative links don't begin with `/`, then ensure your base parameter has a trailing slash, `'http://example.com/'`.
 
 ```php
 use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
