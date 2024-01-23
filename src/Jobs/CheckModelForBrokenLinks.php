@@ -71,7 +71,7 @@ class CheckModelForBrokenLinks implements ShouldQueue
                         $href = $anchorTag->getAttribute('href');
 
                         $link = new Link;
-                        $link->url = Str::startsWith($href, '/') && $this->base
+                        $link->url = ! Str::startsWith($href, ['http://', 'https://']) && $this->base
                             ? $this->base.$href
                             : $href;
                         $link->text = $anchorTag->nodeValue;
