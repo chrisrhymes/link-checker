@@ -9,6 +9,7 @@ A package that will check for broken links in the specified model's fields. It w
 
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+  - [Relative links](#relative-links)
 - [Rate Limiting](#rate-limiting)
 - [User Agent](#user-agent)
 - [Verify SSL](#verify-ssl)
@@ -94,6 +95,25 @@ $post->brokenLinks; // A collection of broken links for the model
 
 $post->brokenLinks[0]->broken_link; // The link that is broken
 $post->brokenLinks[0]->exception_message; // The optional exception message
+```
+
+### Relative links
+
+If you have relative links within a html field in your model (that don't begin with 'http'), then you can pass a 3rd parameter as the base. The CheckModelForBrokenLinks job will prepend the base to the relative url before it is checked.
+
+If your relative links don't begin with `/`, then ensure your base parameter has a trailing slash, `'http://example.com/'`.
+
+```php
+use ChrisRhymes\LinkChecker\Jobs\CheckModelForBrokenLinks;
+use ChrisRhymes\LinkChecker\Facades\LinkChecker;
+
+$post = Post::first();
+
+// Dispatch the job directly
+CheckModelForBrokenLinks::dispatch($post, ['content', 'url'], 'http://example.com');
+
+// Or using the facade
+LinkChecker::checkForBrokenLinks($post, ['content', 'url'], 'http://example.com');
 ```
 
 ## Rate Limiting

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
-    use HasFactory, HasBrokenLinks;
+    use HasBrokenLinks, HasFactory;
 
     protected $fillable = [
         'title',
