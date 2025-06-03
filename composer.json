@@ -22,10 +22,10 @@
     "guzzlehttp/guzzle": "^7.2"
   },
   "require-dev": {
-    "doctrine/dbal": "^3.6",
-    "orchestra/testbench": "^8.5",
-    "pestphp/pest": "^2.0",
-    "pestphp/pest-plugin-laravel": "^2.0",
+    "doctrine/dbal": "^4.0",
+    "orchestra/testbench": "^10.0",
+    "pestphp/pest": "^3.0",
+    "pestphp/pest-plugin-laravel": "^3.0",
     "laravel/legacy-factories": "^1.3",
     "laravel/pint": "^1.2"
   },
