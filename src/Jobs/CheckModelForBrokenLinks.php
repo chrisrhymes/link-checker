@@ -63,7 +63,7 @@ class CheckModelForBrokenLinks implements ShouldQueue
                 }
 
                 try {
-                    $doc = new DOMDocument();
+                    $doc = new DOMDocument;
                     $doc->loadHTML($field);
                     $anchorTags = $doc->getElementsByTagName('a');
 

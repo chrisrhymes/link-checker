@@ -24,7 +24,5 @@ class ServiceProvider extends SupportServiceProvider
         });
     }
 
-    public function register()
-    {
-    }
+    public function register() {}
 }
