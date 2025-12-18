@@ -13,6 +13,7 @@ A package that will check for broken links in the specified model's fields. It w
 - [Rate Limiting](#rate-limiting)
 - [User Agent](#user-agent)
 - [Verify SSL](#verify-ssl)
+- [Skipping status codes](#skipping-status-codes)
 - [Tests](#tests)
 
 ## Getting Started
@@ -135,6 +136,21 @@ The default value is `link-checker`.
 To disable verifying the SSL certificate of the link you are checking, [publish the package configuration](#publish-the-config-optional) and then set `'verify' => false,`.
 
 This uses the HTTP client withOptions() to set the [verify request option in Guzzle](https://docs.guzzlephp.org/en/stable/request-options.html#verify).
+
+## Skipping status codes
+
+If you would like to skip specific status code responses from being reported, then you can add these to your config file.
+
+For example, to skip recording 429 or 504 response codes, add the following.
+
+```php
+// config/link-checker.php
+
+    /**
+     * Status codes to skip from reporting
+     */
+    'status_codes_to_skip' => [429, 504],
+```
 
 ## Tests
 
