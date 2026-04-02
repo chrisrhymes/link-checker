@@ -101,7 +101,7 @@ class CheckLinkFailed implements ShouldQueue
                     ]);
             }
 
-            if ($response->failed()) {
+            if ($response->failed() && ! in_array($response->status(), config('link-checker.status_codes_to_skip', []))) {
                 $this->model->brokenLinks()
                     ->create([
                         'broken_link' => $this->link->url,

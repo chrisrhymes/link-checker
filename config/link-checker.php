@@ -29,4 +29,9 @@ return [
      * Describes the SSL certificate verification behavior of a request
      */
     'verify' => true,
+
+    /**
+     * Status codes to skip from reporting
+     */
+    'status_codes_to_skip' => [],
 ];
