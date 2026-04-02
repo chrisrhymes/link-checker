@@ -2,7 +2,9 @@
 
 namespace ChrisRhymes\LinkChecker\Facades;
 
-class LinkChecker extends \Illuminate\Support\Facades\Facade
+use Illuminate\Support\Facades\Facade;
+
+class LinkChecker extends Facade
 {
     /**
      * {@inheritDoc}

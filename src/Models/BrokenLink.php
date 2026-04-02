@@ -5,6 +5,7 @@ namespace ChrisRhymes\LinkChecker\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Carbon;
 
 /**
  * ChrisRhymes\LinkChecker\Models\BrokenLink
@@ -15,9 +16,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $broken_link
  * @property string $link_text
  * @property string $exception_message
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent|null $linkable
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Model|\Eloquent|null $linkable
  */
 class BrokenLink extends Model
 {

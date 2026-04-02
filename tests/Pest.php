@@ -1,5 +1,8 @@
 <?php
 
+use ChrisRhymes\LinkChecker\Test\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -12,8 +15,8 @@
 */
 
 uses(
-    ChrisRhymes\LinkChecker\Test\TestCase::class,
-    Illuminate\Foundation\Testing\RefreshDatabase::class
+    TestCase::class,
+    RefreshDatabase::class
 )->in('Feature');
 
 /*
