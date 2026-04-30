@@ -114,7 +114,8 @@ class CheckLinkFailed implements ShouldQueue
                 ->create([
                     'broken_link' => $this->link->url,
                     'link_text' => $this->link->text,
-                    'exception_message' => $e->getMessage(),
+                    //'exception_message' => $e->getMessage(),
+                    'exception_message' => "EXCEPTION ERROR: {$e->getMessage()}"
                 ]);
         }
     }
