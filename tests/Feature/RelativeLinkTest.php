@@ -49,7 +49,7 @@ it('records curl error for relative urls without setting base', function () {
         'linkable_type' => 'ChrisRhymes\LinkChecker\Test\Models\Post',
         'broken_link' => 'relative',
         'link_text' => 'Temporary redirect link',
-        'exception_message' => 'cURL error 6: Could not resolve host: relative (see https://curl.haxx.se/libcurl/c/libcurl-errors.html)',
+        'exception_message' => 'URI must include a scheme and host. Use an absolute URI, a network-path reference starting with //, or configure a base_uri.',
     ]);
 });
 
@@ -61,6 +61,6 @@ it('records curl error for relative urls without setting base using the facade',
         'linkable_type' => 'ChrisRhymes\LinkChecker\Test\Models\Post',
         'broken_link' => 'relative',
         'link_text' => 'Temporary redirect link',
-        'exception_message' => 'cURL error 6: Could not resolve host: relative (see https://curl.haxx.se/libcurl/c/libcurl-errors.html)',
+        'exception_message' => 'URI must include a scheme and host. Use an absolute URI, a network-path reference starting with //, or configure a base_uri.',
     ]);
 });
